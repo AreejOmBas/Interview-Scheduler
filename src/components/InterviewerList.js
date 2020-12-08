@@ -11,25 +11,23 @@ export default function IntreviewerList(props) {
 
   const intereviewers = props.interviewers.map((interviewer) => {
     return (
-      <>
-        <h4 className="interviewers__header text--light">{interviewer.name}</h4>
-        <ul className="interviewers__list">
-          <InterviewerListItem
-            key={interviewer.id}
-            name={interviewer.name}
-            selected={interviewer.id === props.interviewer}
-            setInterviewer={props.setInterviewer} 
-            avatar = {interviewer.avatar}
-          />
-        </ul>
-      </>
-          
+      <InterviewerListItem
+        key={interviewer.id}
+        name={interviewer.name}
+        selected={interviewer.id === props.interviewer}
+        setInterviewer={event => props.setInterviewer(interviewer.id)}
+        avatar = {interviewer.avatar}
+      />
     );
   });
 
   return ( 
     <section className="interviewers">
-        {intereviewers}
+        <h4 className="interviewers__header text--light">Interviewer</h4>
+        <ul className="interviewers__list"> 
+          {intereviewers}
+        </ul>
+       
   </section>
   )
 }
