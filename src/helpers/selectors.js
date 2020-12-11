@@ -29,3 +29,18 @@ export function getInterview(state, interview) {
   }
   return result;
 }
+
+
+
+export function getInterviewersForDay(state, day) {
+
+  const dayFound = state.days.find((currentDay) => (currentDay.name === day));
+
+  if (!dayFound) {
+    return [];
+  }
+
+  const results = dayFound.interviewers.map((id) => state.interviewers[id]);
+  console.log(results)
+  return results;
+}
