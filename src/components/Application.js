@@ -20,11 +20,11 @@ export default function Application(props) {
   } = useApplicationData();
 
  // getting all appointments for the selected day
- const dailyAppointments = getAppointmentsForDay(state,state.day);
+  const dailyAppointments = getAppointmentsForDay(state,state.day);
   const interviewres =  getInterviewersForDay(state,state.day)
   // Iterate through the appointments list to generate Appointment components 
   const appointmentList = dailyAppointments.map( (appointment) => {
-    const interview = getInterview(state, appointment.interview);
+  const interview = getInterview(state, appointment.interview);
     
 
     return (

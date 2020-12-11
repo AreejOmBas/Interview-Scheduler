@@ -10,7 +10,24 @@ export default function  useApplicationData() {
     interviewers: {}
   });
   const setDay = day => setState({ ...state, day });
+  
+  const updateSpots = (appointmentId, cancel = true ) => {
+    if (!state.appointments[appointmentId].interview || cancel) {
+    
+      const currentDay = state.days.find((day) => day.appointments.includes(appointmentId));
+      const newDays = [...state.days];
+      let index = newDays.findIndex(day =>  day.name === currentDay.name);
+      //console.log(currentDay);
 
+      currentDay.spots = (cancel) ? currentDay.spots + 1 : currentDay.spots - 1 ;
+      newDays[index] = currentDay;
+
+      return newDays;
+
+    }
+    return [];
+    
+  } 
   const bookInterview = (id, interview) =>  {
     const appointment = {
       ...state.appointments[id],
@@ -20,10 +37,15 @@ export default function  useApplicationData() {
       ...state.appointments,
       [id]: appointment
     };
-   
-    return axios.put(`/api/appointments/${id}`,{interview})
-    .then(response => setState((prev) =>( {...prev, appointments})) )
     
+
+      const updatedSpots =  updateSpots(id,false);
+  
+    return axios.put(`/api/appointments/${id}`,{interview},)
+    .then(response => {
+      setState((prev) => ( {...prev, updatedSpots,appointments}))
+    })
+
   }
 
   const cancelInterview = (id) => {
@@ -37,9 +59,10 @@ export default function  useApplicationData() {
       ...state.appointments,
       [id]: appointment
     };
-
-    return axios.delete(`/api/appointments/${id}`)
-    .then(response => setState((prev) =>( {...prev, appointments})) )
+    const updatedSpots =  updateSpots(id);
+      return axios.delete(`/api/appointments/${id}`)
+      .then(response => setState((prev) =>( {...prev, updatedSpots, appointments})) )
+   
     
 
   }
