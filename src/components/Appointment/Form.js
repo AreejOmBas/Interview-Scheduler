@@ -15,9 +15,6 @@ export default function Form(props) {
    props.onCancel();
   
   }
-  const save = () =>{
-
-  }
 
 
   return (
