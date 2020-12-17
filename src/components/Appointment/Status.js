@@ -1,7 +1,6 @@
-
-
 import React from 'react'
 
+// component that shows a status i.e saving or deleting indicators
 export default function Status(props) {
 
   return (

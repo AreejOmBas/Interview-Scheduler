@@ -1,12 +1,15 @@
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
+// Unit tests for the functions in selectors.js
+
+// fake state data
 const state = {
   days: [
     {
       id: 1,
       name: "Monday",
       appointments: [1, 2, 3],
-      interviewers: [1,2]
+      interviewers: [1, 2]
     },
     {
       id: 2,
@@ -31,7 +34,7 @@ const state = {
     }
   },
   interviewers: {
-    "1": {  
+    "1": {
       "id": 1,
       "name": "Sylvia Palmer",
       "avatar": "https://i.imgur.com/LpaY82x.png"
@@ -44,7 +47,7 @@ const state = {
   }
 };
 
-// Test cases for getAppointmentsForDay function 
+// Test cases for getAppointmentsForDay()
 test("getAppointmentsForDay returns an array", () => {
   const result = getAppointmentsForDay(state, "Monday");
   expect(Array.isArray(result)).toBe(true);

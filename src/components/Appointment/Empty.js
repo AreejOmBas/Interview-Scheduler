@@ -1,7 +1,7 @@
 import React from 'react'
 
+// Component to show the Add image on empty spots
 export default function Empty(props) {
-
 
   return (
     <main className="appointment__add">
@@ -12,7 +12,5 @@ export default function Empty(props) {
       onClick = {props.onAdd}
     />
   </main>
-  )
-
-
+  );
 }

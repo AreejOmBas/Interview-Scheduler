@@ -1,5 +1,5 @@
 import React from "react";
-import axios from 'axios';
+
 
 import "components/Application.scss";
 
@@ -9,9 +9,9 @@ import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "help
 import useApplicationData from 'hooks/useApplicationData';
 
 
-
+// Main Application component that connects all parts of the app 
 export default function Application(props) {
- 
+
   const {
     state,
     setDay,
@@ -19,28 +19,29 @@ export default function Application(props) {
     cancelInterview
   } = useApplicationData();
 
- // getting all appointments for the selected day
-  const dailyAppointments = getAppointmentsForDay(state,state.day);
-  const interviewres =  getInterviewersForDay(state,state.day)
-  // Iterate through the appointments list to generate Appointment components 
-  const appointmentList = dailyAppointments.map( (appointment) => {
-  const interview = getInterview(state, appointment.interview);
-    
+  // getting all appointments for the selected day
+  const dailyAppointments = getAppointmentsForDay(state, state.day);
 
+  // getting all interviews for a specific day
+  const interviewres = getInterviewersForDay(state, state.day);
+
+  // Iterate through the appointments list to generate Appointment components 
+  const appointmentList = dailyAppointments.map((appointment) => {
+    // fitch single interview from each appointment
+    const interview = getInterview(state, appointment.interview);
     return (
       <Appointment
         key={appointment.id}
         id={appointment.id}
         time={appointment.time}
         interview={interview}
-        interviewers = {interviewres}
-        bookInterview = {bookInterview}
-        cancelInterview = {cancelInterview}
+        interviewers={interviewres}
+        bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
     );
-    })
-  
-
+  })
+  // JSX element
   return (
 
     <main className="layout">
@@ -63,7 +64,6 @@ export default function Application(props) {
           src="images/lhl.png"
           alt="Lighthouse Labs"
         />
-        {/* Replace this with the sidebar elements during the "Project Setup & Familiarity" activity. */}
       </section>
       <section className="schedule">
         {appointmentList}

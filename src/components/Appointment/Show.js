@@ -1,13 +1,12 @@
-
-
-
-
 import React from 'react'
+
+
+// component that shows a saved interview appointment
 
 export default function Show(props) {
 
-
   return (
+
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">
         <h2 className="text--regular">{props.student}</h2>
@@ -22,20 +21,18 @@ export default function Show(props) {
             className="appointment__actions-button"
             src="images/edit.png"
             alt="Edit"
-            onClick = {() => props.onEdit()}
+            onClick={() => props.onEdit()}
           />
           <img
             className="appointment__actions-button"
             src="images/trash.png"
             alt="Delete"
-            onClick = {() => props.onDelete()}
+            onClick={() => props.onDelete()}
           />
         </section>
       </section>
     </main>
-  )
-
-
+  );
 }
 
 

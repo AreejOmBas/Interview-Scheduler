@@ -8,10 +8,12 @@ import axios from "axios";
 
 afterEach(cleanup);
 
-/* Please not to tests #4,5 have to be run alone using only on each of them at a time, 
+/* Please not for some reason cleanup is not running,
+ so to tests #3,4 have to be run alone using .only on each of them at a time, 
 otherwise the other tests will affect the expected result  */
 
 describe("Application ", () => {
+ 
   it("defaults to Monday and changes the schedule when a new day is selected", async () => {
 
     const { getByText } = render(<Application />);
@@ -57,7 +59,7 @@ describe("Application ", () => {
     const day = getAllByTestId(container, "day").find(day =>
       queryByText(day, "Monday")
     );
-    expect(getByText(day, /no spots remaining/i)).toBeInTheDocument()
+    expect(getByText(day, /no spots remaining/i)).toBeInTheDocument();
 
 
   });
@@ -68,7 +70,7 @@ describe("Application ", () => {
 
     // 2. Wait until the text "Archie Cohen" is displayed.
     await waitForElement(() => getByText(container, "Archie Cohen"));
-
+    
     // 3. Click the "Delete" button on the booked appointment.
     const appointment = getAllByTestId(container, "appointment").find(
       appointment => queryByText(appointment, "Archie Cohen")
@@ -120,7 +122,7 @@ describe("Application ", () => {
     fireEvent.click(getByAltText(appointment, "Sylvia Palmer"));
 
     //click Save button 
-    fireEvent.click(getByText(appointment, "Save"))
+    fireEvent.click(getByText(appointment, "Save"));
 
     // wait for the saving to finish and show the new edit it appointment 
     await waitForElement(() => queryByText(appointment, "Mike Smith"));
@@ -130,7 +132,9 @@ describe("Application ", () => {
     const day = getAllByTestId(container, "day").find(day =>
       queryByText(day, "Monday")
     );
+
     expect(getByText(day, "1 spot(s) remaining")).toBeInTheDocument();
+
   });
 
   it("shows the save error when failing to save an appointment", async () => {

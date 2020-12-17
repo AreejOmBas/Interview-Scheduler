@@ -2,7 +2,7 @@ import { renderHook, act } from "@testing-library/react-hooks";
 
 import useVisualMode from "hooks/useVisualMode";
 
-
+// Unit tests for the useVisualMode custom hook
 const FIRST = "FIRST";
 const SECOND = "SECOND";
 const THIRD = "THIRD";
@@ -19,6 +19,7 @@ test("useVisualMode should transition to another mode", () => {
   act(() => result.current.transition(SECOND));
   expect(result.current.mode).toBe(SECOND);
 });
+
 test("useVisualMode should return to previous mode", () => {
   const { result } = renderHook(() => useVisualMode(FIRST));
 

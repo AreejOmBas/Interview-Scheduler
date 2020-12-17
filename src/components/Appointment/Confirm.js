@@ -1,12 +1,8 @@
 import React from 'react'
 import Button from '../Button'
 
-
+// Confirm component to show delete message to the user
 export default function Confirm(props) {
-
-  /* message:String eg. "Delete the appointment?"
-onConfirm:Function to be called when the user clicks the Confirm button
-onCancel:Function to be called when the user clicks the Cancel button */
 
   return (
     <main className="appointment__card appointment__card--confirm">
@@ -16,8 +12,6 @@ onCancel:Function to be called when the user clicks the Cancel button */
         <Button danger onClick = {() => props.onConfirm()}>Confirm</Button>
       </section>
     </main>
-
-
-  )
+  );
 
 }

@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
+
+// custom hook to help with setting different modes of the application
 export default function useVisualMode(initial) {
 
   const [mode, setMode] = useState(initial);
@@ -21,9 +23,9 @@ export default function useVisualMode(initial) {
       setHistory(newHistory);
     }
 
-  }
+  };
 
-   // going back to previous mode of app 
+  // going back to previous mode of app 
   const back = () => {
 
     if (history.length > 1) { // Limit to not get before the initial mode
@@ -35,10 +37,8 @@ export default function useVisualMode(initial) {
       setMode(prevMode);
       setHistory(newHistory);
     }
-
-  }
+  };
 
   return { mode, transition, back };
-
 
 }

@@ -23,8 +23,6 @@ import Form from "components/Appointment/Form.js";
 
 
 
-
-
 storiesOf("Button", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -190,4 +188,3 @@ storiesOf("Appointment", module)
   .add("Form Create", () => <Form interviewers={interviewers}
     onSave={action("onSave")}
     onCancel={action("onCancel")} />)
-  
