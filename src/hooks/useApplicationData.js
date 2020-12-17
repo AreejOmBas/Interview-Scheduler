@@ -15,10 +15,11 @@ export default function useApplicationData() {
   const setDay = day => setState({ ...state, day });
 
   // returns new Days Array with updated spots after booking or deleting (cancel true , means we are deleting )
-  const updateSpots = (appointmentId, callback) => {
+  const updateSpots = (appointmentId, callback, cancel=false) => {
 
-    // if intreview not null, then it is an edit so no need to update spot
-    if (state.appointments[appointmentId].interview) {
+    // if intreview  null, and we are not canceling then it is an edit so no need to update spot
+    if (state.appointments[appointmentId].interview && !cancel) {
+  
       return [];
     }
     //find the day using the appointment Id 
@@ -68,7 +69,7 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
-    const updatedSpots = updateSpots(id, (spots => ++spots));
+    const updatedSpots = updateSpots(id, (spots => ++spots), true);
     return axios.delete(`/api/appointments/${id}`)
       .then(response => setState((prev) => ({ ...prev, updatedSpots, appointments })));
   }
